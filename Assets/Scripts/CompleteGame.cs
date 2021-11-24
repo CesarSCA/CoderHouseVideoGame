@@ -8,26 +8,27 @@ public class CompleteGame : MonoBehaviour
 
         public GameObject[] MISIONES;
         bool[] miss = new bool[5];
-        [SerializeField] GameObject puerta;
-        [SerializeField] float velocidad = 0.5f;
-        bool doorIsOpen = false;
+        // [SerializeField] GameObject puerta;
+        // [SerializeField] float velocidad = 0.5f;
+        // bool doorIsOpen = false;
 
     void Start()
     {
-        miss[0] = false;
-        miss[1] = false;
-        miss[2] = false;
-        miss[3] = false;
+        for( int i = 0; i < 4; i++)
+        {
+            miss[i] = false;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {   
         CheckIfComplete();
-        if(miss[0] == true && miss[1] == true && miss[2] == true && miss[3] == true && doorIsOpen == false)
+        if(miss[0] == true && miss[1] == true && miss[2] == true && miss[3] == true)
         {
-            doorIsOpen = true;
-            openDoor();
+            // doorIsOpen = true;
+            // openDoor();
+            Debug.Log("Se completaron todas las misiones!");
         }
     }
 
@@ -43,12 +44,12 @@ public class CompleteGame : MonoBehaviour
         }
 
     }
-    void openDoor()
-    {
-        if(puerta.transform.position.magnitude > 6.5f)
-        {
-            return;
-        }
-        puerta.transform.Translate(velocidad * Time.deltaTime * new Vector3(0, 1, 0));
-    }
+    // void openDoor()
+    // {
+    //     if(puerta.transform.position.magnitude > 6.5f)
+    //     {
+    //         return;
+    //     }
+    //     puerta.transform.Translate(velocidad * Time.deltaTime * new Vector3(0, 1, 0));
+    // }
 }

@@ -22,7 +22,7 @@ public class PlayerMissions : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update() 
     {
         TextMeshPro texto = tabletsTexto.GetComponent<TextMeshPro>();
         if(missionComplete == false)

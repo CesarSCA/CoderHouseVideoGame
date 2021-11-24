@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour
     float ejeVertical;
     Vector3 moveDirection;
     float rbDrag = 6f;
-    [SerializeField] private float MaxDistance = 10f;
     [SerializeField] private LayerMask layerToCollide;
 
 
@@ -39,16 +38,6 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         Avanzar();
-        Raycast();
-    }
-    private void Raycast()
-    {
-        RaycastHit hit;
-        if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, MaxDistance, layerToCollide))
-        {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-            Debug.Log("veo algo a " + hit.distance);
-        }
     }
 
     void Inputs()
