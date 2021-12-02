@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,17 +10,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float ejeX = 0f;
     [SerializeField] private GameObject tablet;
     [SerializeField] private bool tabletActiva = false;
-    [SerializeField] private float stamina =  100;
+    [SerializeField] private float stamina =  10;
     private Rigidbody rbPlayer;
     float ejeHorizontal;
     float ejeVertical;
     Vector3 moveDirection;
     float rbDrag = 6f;
-    [SerializeField] private LayerMask layerToCollide;
+    [SerializeField] private GameObject enemy;
+    [SerializeField] private TextMeshProUGUI distanceInterface;
+    [SerializeField] private TextMeshProUGUI staminaInterface;
+    [SerializeField] private TextMeshProUGUI[] warningTexts;
+    private float timer;
 
 
 
-       // Start is called before the first frame update
+    // Start is called before the first frame update
     void Start()
     {   
         rbPlayer = GetComponent<Rigidbody>();
@@ -34,6 +39,23 @@ public class PlayerController : MonoBehaviour
         Rotar();
         Inputs();
         ControlDrag();
+        distanceInterface.text = "Distancia de ???: " + Mathf.Floor((GetEnemyDistance().magnitude)).ToString();
+        staminaInterface.text = "Stamina: " + Mathf.Floor(stamina).ToString();
+        if (Mathf.Floor((GetEnemyDistance().magnitude)) <= 5)
+        {
+            blinkingText(0);
+        } else
+        {
+            warningTexts[0].enabled = false;
+        }
+        if (Mathf.Floor(stamina) == 0)
+        {
+            blinkingText(1);
+        } else
+        {
+            warningTexts[1].enabled = false;
+        }
+
     }
     void FixedUpdate()
     {
@@ -67,22 +89,22 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.LeftShift))
         {
-            stamina -= 2f;
+            stamina -= 2.7f * Time.deltaTime;
             if(stamina <= 0)
             {
                 velocidadMovimiento = 2f;
                 stamina = 0;
                 return;
             }
-            velocidadMovimiento = 2.6f;
+            velocidadMovimiento = 2.9f;
         }
         if(!Input.GetKey(KeyCode.LeftShift))
         {
-            stamina += 1.3f;
-            if(stamina >= 100)
+            stamina += 2f * Time.deltaTime;
+            if(stamina >= 10)
             {
-                velocidadMovimiento = 2.3f;
-                stamina = 100;
+                velocidadMovimiento = 2.5f;
+                stamina = 10;
                 return;
             }
             velocidadMovimiento = 2f;
@@ -104,6 +126,23 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    
+    private Vector3 GetEnemyDistance()
+    {
+        return enemy.transform.position - transform.position;
+    }
+    private void blinkingText(int num)
+    {
+        timer = timer + Time.deltaTime;
+        if (timer >= 0.1)
+        {
+            warningTexts[num].enabled = true;
+        }
+        if (timer >= 1)
+        {
+            warningTexts[num].enabled = false;
+            timer = 0;
+        }
+    }
+
 }
     
