@@ -424,13 +424,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3368814763193611555, guid: 430f825cf412f0a4aa9e093bbb326bd9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 430f825cf412f0a4aa9e093bbb326bd9, type: 3}
 --- !u!1 &276841841 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3368814763193611559, guid: 430f825cf412f0a4aa9e093bbb326bd9, type: 3}
   m_PrefabInstance: {fileID: 276841840}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &276841842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276841841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab4a43151e09f845a96f414da7505cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animEnemy: {fileID: 1670640140}
+  enemySpeed: 1.7
 --- !u!1001 &328357298
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1755,6 +1770,11 @@ CanvasRenderer:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3778978514157739199, guid: 06285f1c6260d044785d9d01d012e432, type: 3}
   m_PrefabInstance: {fileID: 3778978513155686254}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1670640140 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9199440634810352803, guid: 430f825cf412f0a4aa9e093bbb326bd9, type: 3}
+  m_PrefabInstance: {fileID: 276841840}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1716988602 stripped
 MonoBehaviour:
