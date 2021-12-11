@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="NewBook", menuName = "Items/Books", order = 1)]
 public class Libros : ScriptableObject
 {
-    public int numBook;
     public Sprite sprite;
     public string text;
     // Start is called before the first frame update
